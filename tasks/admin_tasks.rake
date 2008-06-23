@@ -4,46 +4,47 @@ task :admin => [ 'admin:images', 'admin:javascripts', 'admin:stylesheets', 'admi
 namespace :admin do
   desc 'Updates images/admin/system'
   task :images do
-    copy_resource :images, 'public/images'
+    admin_resource :images, 'public/images'
   end
   
   desc 'Updates javascripts/admin/system'
   task :javascripts do
-    copy_resource :javascripts, 'public/javascripts'
+    admin_resource :javascripts, 'public/javascripts'
   end
   
   desc 'Updates stylesheets/admin/system'
   task :stylesheets do
-    copy_resource :stylesheets, 'public/stylesheets'
+    admin_resource :stylesheets, 'public/stylesheets'
   end
   
   desc 'Updates views/admin/system'
   task :views do
-    copy_resource :views, 'app/views'
+    admin_resource :views, 'app/views'
   end
   
   desc 'Updates plugin resources from app'
   task :to_plugin do
-    copy_resource :images,      'public/images',      true
-    copy_resource :javascripts, 'public/javascripts', true
-    copy_resource :stylesheets, 'public/stylesheets', true
-    copy_resource :views,       'app/views',          true
+    admin_resource :images,      'public/images',      true
+    admin_resource :javascripts, 'public/javascripts', true
+    admin_resource :stylesheets, 'public/stylesheets', true
+    admin_resource :views,       'app/views',          true
   end
     
-  def copy_resource(type, location, reverse=false)
+  def admin_resource(type, location, reverse=false)
     from = "#{File.dirname(__FILE__)}/../resources/#{type}"
     to   = location + '/admin/system'
-    if reverse
-      x = from
-      from = to
-      to = x
-    end
-    if File.file? location
-      puts "=> Removing old #{type}..."
-      system "rm -Rf #{to}"
-    end
+    from, to = to, from if reverse
+    puts "=> Removing old #{type}..."
+    FileUtils.remove_dir to, true
+    FileUtils.mkdir_p to
     puts "=> Copying #{type}..."
-    system "mkdir -p #{to}"
-    system "cp #{from} #{to}"
+    Dir["#{from}/*"].each do |f|
+      if File.directory? f
+        FileUtils.mkdir_p "#{to}/#{File.basename(f)}"
+        FileUtils.cp_r f, to
+      else
+        FileUtils.cp f, to
+      end
+    end
   end
 end
