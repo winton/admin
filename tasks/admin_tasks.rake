@@ -21,15 +21,29 @@ namespace :admin do
   task :views do
     copy_resource :views, 'app/views'
   end
+  
+  desc 'Updates plugin resources from app'
+  task :to_plugin do
+    copy_resource :images,      'public/images',      true
+    copy_resource :javascripts, 'public/javascripts', true
+    copy_resource :stylesheets, 'public/stylesheets', true
+    copy_resource :views,       'app/views',          true
+  end
     
-  def copy_resource(type, location)
-    location += '/admin/system'
+  def copy_resource(type, location, reverse=false)
+    from = "#{File.dirname(__FILE__)}/../resources/#{type}"
+    to   = location + '/admin/system'
+    if reverse
+      x = from
+      from = to
+      to = x
+    end
     if File.file? location
       puts "=> Removing old #{type}..."
-      system "rm -Rf #{location}"
+      system "rm -Rf #{to}"
     end
     puts "=> Copying #{type}..."
-    system "mkdir -p #{location}"
-    system "cp #{File.dirname(__FILE__)}/../resources/#{type} #{location}"
+    system "mkdir -p #{to}"
+    system "cp #{from} #{to}"
   end
 end
