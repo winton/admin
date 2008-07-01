@@ -1,2 +1,4 @@
-module AdminHelpers
+module Admin
+  module Helpers
+  end
 end

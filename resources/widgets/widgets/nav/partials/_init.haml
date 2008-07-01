@@ -1,0 +1,9 @@
+.box
+  .nav
+    .blue
+      Main menu
+    - admin_sections.each do |section|
+      .grey{ :id => section }
+        .indicator
+          = image_tag 'admin/system/indicator/nav.gif'
+        = section.to_s.capitalize.gsub '_', ''

@@ -1,5 +1,5 @@
 desc 'Updates admin/system for all resources'
-task :admin => [ 'admin:images', 'admin:javascripts', 'admin:stylesheets', 'admin:views' ]
+task :admin => [ 'admin:images', 'admin:javascripts', 'admin:stylesheets', 'admin:views', 'admin:widgets' ]
 
 namespace :admin do
   desc 'Updates images/admin/system'
@@ -14,7 +14,7 @@ namespace :admin do
   
   desc 'Updates stylesheets/admin/system'
   task :stylesheets do
-    admin_resource :stylesheets, 'public/stylesheets'
+    admin_resource :stylesheets, 'public/stylesheets/sass'
   end
   
   desc 'Updates views/admin/system'
@@ -22,17 +22,23 @@ namespace :admin do
     admin_resource :views, 'app/views'
   end
   
+  desc 'Updates widgets/admin'
+  task :widgets do
+    admin_resource :views, 'app/views'
+  end
+  
   desc 'Updates plugin resources from app'
   task :to_plugin do
-    admin_resource :images,      'public/images',      true
-    admin_resource :javascripts, 'public/javascripts', true
-    admin_resource :stylesheets, 'public/stylesheets', true
-    admin_resource :views,       'app/views',          true
+    admin_resource :images,      'public/images',           true
+    admin_resource :javascripts, 'public/javascripts',      true
+    admin_resource :stylesheets, 'public/stylesheets/sass', true
+    admin_resource :views,       'app/views',               true
+    admin_resource :widgets,     'app/widgets',             true
   end
     
   def admin_resource(type, location, reverse=false)
     from = "#{File.dirname(__FILE__)}/../resources/#{type}"
-    to   = location + '/admin/system'
+    to   = location + (type == :widgets ? '/admin' : '/admin/system')
     from, to = to, from if reverse
     puts "=> Removing old #{type}..."
     FileUtils.remove_dir to, true

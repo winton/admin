@@ -1,0 +1,38 @@
+!!! Strict
+%html
+  %head
+    %title= @title.join(' - ')
+    - stylesheets 'admin/system/base'
+    = stylesheets
+  %body
+    #top
+      .content= image_tag 'admin/system/title.png'
+    #top2
+    #top3
+      .content
+        - tbl :row, :system_status, :px, 75, 115, 780 do
+          - tbl :cell, :system_status do
+            = image_tag 'admin/system/system_status.png'
+          - tbl :cell, :system_status do
+            System status
+          - tbl :cell, :system_status do
+            You’ll be happy to know that your
+            %b 3 mongrels (2 production, 1 staging)
+            are running at
+            %b 3% of capacity.
+            %br/
+            You had
+            %b 10 sign ups, 1234 unique hits,
+            and
+            %b 10 account cancellations
+            in the past 24 hours.
+    #content
+      .content
+        - tbl :row, :body, :px, 190, 780 do
+          - tbl :cell, :body do
+            = widget :admin, :nav
+          - tbl :cell, :body do
+            - widget :admin, :table, :dependencies_only => true
+            = yield
+    - javascripts 'admin/system/base'
+    = javascripts
