@@ -2,6 +2,8 @@
 %html
   %head
     %title= @title.join(' - ')
+    - nav_widget = widget :admin, :nav
+    - widget :admin, :table, :dependencies_only => true
     - stylesheets 'admin/system/base'
     = stylesheets
   %body
@@ -30,9 +32,8 @@
       .content
         - tbl :row, :body, :px, 190, 780 do
           - tbl :cell, :body do
-            = widget :admin, :nav
+            = nav_widget
           - tbl :cell, :body do
-            - widget :admin, :table, :dependencies_only => true
             = yield
     - javascripts 'admin/system/base'
     = javascripts

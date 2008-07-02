@@ -1,5 +1,6 @@
 var AdminTable = new Class({
-  initialize: function() {
-    console.log('table loaded');
+  initialize: function(options) {
+    var container = $(options.id);
+    var indicator = container.getElement('.indicator');
   }
 });

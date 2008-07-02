@@ -1,6 +1,9 @@
 {
   :title => 'Some resource',
     # Table's title
+    
+  :id => 'some_resource',
+    # Table's DOM id
   
   :index_resource => '/some_resource.json',
     # Resource's index action
@@ -24,7 +27,7 @@
   :row_links => [
     { :title => 'Edit',   :resource => '/some_resource/edit' },
     { :title => 'Delete', :resource => '/some_resource/destroy.json' }
-  ],
+  ]
     # Links displayed when row is clicked
       # :resource should return HTML or JSON depending on URL extension
         # HTML should be a form

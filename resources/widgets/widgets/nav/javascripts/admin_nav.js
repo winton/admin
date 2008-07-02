@@ -33,12 +33,14 @@ var AdminNav = new Class({
           onComplete: function(tree, elements) {
             body.empty();
             body.setStyle('opacity', 0);
-            elements[0].inject(body, 'top');
+            if (elements[0])
+              elements[0].inject(body, 'top');
             body.fade('in');
             indicator.fade('out');
           }
         }).get('/admin/' + this.id);
-      }
+      } else
+        body.empty();
     });
   }
 });
