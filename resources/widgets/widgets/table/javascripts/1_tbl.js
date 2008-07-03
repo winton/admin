@@ -19,7 +19,7 @@ var Tbl = function() {
   var cname  = args.shift();
   var data   = $A(args.shift());
   var unit   = args.shift();
-  var widths = args;
+  var widths = $type(args[0]) == 'array' ? args[0] : args;
   
   var container = new Element('div', {
     'class':   cname + ' row',
@@ -33,8 +33,9 @@ var Tbl = function() {
       margin  = widths.sum();
       margin -= widths[col];
     }
+    var first_last = (col == 0 ? ' first' : col == widths.length -1 ? ' last' : '');
     var div = new Element('div', {
-      'class': cname + col + ' ' + cname + '_parent parent',
+      'class': cname + col + ' ' + cname + '_parent parent' + first_last,
       styles: {
         'margin-right': col == 0 ? margin + unit       : null,
         'margin-left' : col != 0 ? '-' + margin + unit : null,
@@ -43,7 +44,7 @@ var Tbl = function() {
       }
     });
     var child = new Element('div', {
-      'class': cname + '_cell cell'
+      'class': cname + '_cell cell' + first_last
     });
     child.innerHTML = data[x];
     div.adopt(child);

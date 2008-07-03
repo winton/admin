@@ -8,11 +8,41 @@
       :background #F1F4F9
     .zebra_orange .table_rows_cell
       :background #F9F6F0
+    .table_headers
+      .orange
+        :cursor pointer
+      .arrow
+        :opacity 0
+        :float right
+        :margin 10px 8px 0px 0px
+        :width 8px
+        :height 4px
+        :background-repeat no-repeat
+      .arrow.up
+        :background-image url('/images/widgets/admin/table/arrow_up.png')
+      .arrow.down
+        :background-image url('/images/widgets/admin/table/arrow_down.png')
     .table_rows
+      :cursor pointer
       .table_rows_cell
         :height 24px
         :line-height 24px
-        :border-right 1px solid #CCCFD7
-        :border-bottom 1px solid #CCCFD7
-      .table_rows0 .cell
         :border-left 1px solid #CCCFD7
+        :border-bottom 1px solid #CCCFD7
+      .table_rows_parent
+        .last
+          :border-right 1px solid #CCCFD7
+    .table_links
+      :float right
+      :font-size 12px
+      :opacity 0
+      :padding-right 5px
+
+.table_menu
+  :position absolute
+  :border 1px solid #CCCFD7
+  :background #E7E8ED
+  :padding 2px 5px
+  :margin 8px
+  :font-size 12px
+  :line-height 18px

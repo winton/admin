@@ -3,36 +3,8 @@
     .grey
       .indicator
         = image_tag 'widgets/admin/table/indicator.gif'
+      .table_links
+        - table_links.each_index do |index|
+          &nbsp;&nbsp;
+          = link_to table_links[index][:title], table_links[index][:resource]
       = title
-
-/    - tbl :row, :table_headers, '%', 25, 50, 25 do
-/      - tbl :cell, :table_headers do
-/        .light_blue
-/          Header 1
-/      - tbl :cell, :table_headers do
-/        .orange
-/          Header 2
-/      - tbl :cell, :table_headers do
-/        .light_blue
-/          Header 3
-/    - tbl :row, :table_rows, '%', 25, 50, 25 do
-/      - tbl :cell, :table_rows do
-/        Column 1
-/      - tbl :cell, :table_rows do
-/        Column 2
-/      - tbl :cell, :table_rows do
-/        Column 3
-/      .zebra
-/        - tbl :cell, :table_rows do
-/          Column 1
-/        .zebra_orange
-/          - tbl :cell, :table_rows do
-/            Column 2
-/        - tbl :cell, :table_rows do
-/          Column 3
-/      - tbl :cell, :table_rows do
-/        Column 1
-/      - tbl :cell, :table_rows do
-/        Column 2
-/      - tbl :cell, :table_rows do
-/        Column 3

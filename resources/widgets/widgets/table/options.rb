@@ -12,7 +12,10 @@
         # page (optional for pagination)
       # Returns JSON
         # {
-        #   pages: [ { column1: '', column2: '' }, ... ],
+        #   columns: [ 'Column 1', 'Column 2' ],
+        #   widths:  [ 50, 50 ], // (%)
+        #   data:    [ 'col 1 row 1', 'col 2 row 1', 'col 1 row 2' ... ],
+        #   ids:     [ 1, 2, 3 ... ], // (one for each row)
         #   pagination: pagination link HTML (optional)
         # }
   

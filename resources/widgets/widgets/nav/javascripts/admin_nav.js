@@ -4,7 +4,6 @@ var AdminNav = new Class({
     var out   = 'grey';
     var click = 'orange';
     
-    var body = $$('.body1 .cell')[0];
     var els  = $$('.nav .grey');
     
     els.addEvent('mouseenter', function() {
@@ -29,14 +28,11 @@ var AdminNav = new Class({
         var indicator = this.getElement('.indicator');
         indicator.fade('in');
         var request = new Request.HTML({
-          evalScripts: true,
-          onComplete: function(tree, elements) {
-            body.empty();
-            body.setStyle('opacity', 0);
-            if (elements[0])
-              elements[0].inject(body, 'top');
-            body.fade('in');
+          evalScripts: false,
+          onComplete: function(tree, elements, html, js) {
+            Global.Admin.reloadBody(elements[0]);
             indicator.fade('out');
+            eval(js);
           }
         }).get('/admin/' + this.id);
       } else
