@@ -38,11 +38,11 @@ var AdminNav = new Class({
       this.removeClass(out);
       this.toggleClass(over);
       this.toggleClass(click);
+      Global.Admin.back();
       if (this.hasClass(click)) {
         me.selected = this;
         me.reloadTable();
-      } else
-        $$('.body1 .cell').empty();
+      }
     });
   }
 });

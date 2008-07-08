@@ -11,8 +11,9 @@ var Admin = new Class({
     };
     
     this.back = function(no_show) {
-      body.getFirst().destroy();
-      if (!no_show)
+      if (body.getFirst())
+        body.getFirst().destroy();
+      if (body.getFirst() && !no_show)
         body.getFirst().fadeIn();
     };
   }
