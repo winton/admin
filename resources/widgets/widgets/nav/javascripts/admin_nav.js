@@ -4,7 +4,21 @@ var AdminNav = new Class({
     var out   = 'grey';
     var click = 'orange';
     
-    var els  = $$('.nav .grey');
+    var els = $$('.nav .grey');
+    var me  = this;
+    
+    this.reloadTable = function() {
+      var indicator = this.selected.getElement('.indicator');
+      indicator.fade('in');
+      var request = new Request.HTML({
+        evalScripts: false,
+        onComplete: function(tree, elements, html, js) {
+          Global.Admin.addContent(elements[0]);
+          indicator.fade('out');
+          eval(js);
+        }
+      }).get('/admin/' + this.selected.id);
+    };
     
     els.addEvent('mouseenter', function() {
       if (this.hasClass(click)) return;
@@ -25,18 +39,10 @@ var AdminNav = new Class({
       this.toggleClass(over);
       this.toggleClass(click);
       if (this.hasClass(click)) {
-        var indicator = this.getElement('.indicator');
-        indicator.fade('in');
-        var request = new Request.HTML({
-          evalScripts: false,
-          onComplete: function(tree, elements, html, js) {
-            Global.Admin.reloadBody(elements[0]);
-            indicator.fade('out');
-            eval(js);
-          }
-        }).get('/admin/' + this.id);
+        me.selected = this;
+        me.reloadTable();
       } else
-        body.empty();
+        $$('.body1 .cell').empty();
     });
   }
 });

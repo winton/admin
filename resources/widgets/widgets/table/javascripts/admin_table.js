@@ -28,7 +28,7 @@ var AdminTable = new Class({
         url: this.get('href'),
         evalScripts: false,
         onComplete: function(tree, elements, html, js) {
-          Global.Admin.reloadBody(elements[0]);
+          Global.Admin.addContent(elements[0]);
           eval(js);
         }
       }).get();
@@ -70,8 +70,8 @@ var AdminTable = new Class({
         menu = new Element('div', {
           'class': 'table_menu',
           styles: {
-            top: e.client.y,
-            left: e.client.x,
+            top: e.page.y,
+            left: e.page.x,
             opacity: 0
           },
           html: options.row_links.map(function(item) {
@@ -83,23 +83,33 @@ var AdminTable = new Class({
           var row_link = options.row_links.filter(function(item) {
             return item.title == this.textContent;
           }, this)[0];
-          if (item.resource.contains('.json'))
-            new Request.JSON({
-              url: row_link.resource,
-              onComplete: function(json){
-                if (json.message)
-                  alert(json.message);
+          var id = me.idFromParent(e.target.getParent());
+          if (row_link.resource.contains('.json'))
+            new Request({
+              url: row_link.resource.replace(':id', id),
+              method: row_link.title.contains('Delete') ? 'delete' : 'get',
+              data: { id: me.idFromParent(e.target.getParent()), authenticity_token: Global.authenticity_token },
+              onSuccess: function(json){
+                if (json.trim() == '')
+                  Global.AdminNav.reloadTable();
+                else {
+                  json = eval(json);
+                  if (json.message)
+                    alert(json.message);
+                }
               }.bind(this)
-            }).get({ id: me.idFromParent(e.target.getParent()) });
+            }).send();
           else
             new Request.HTML({
-              url: row_link.resource,
+              url: row_link.resource.replace(':id', id),
+              method: row_link.title.contains('Delete') ? 'delete' : 'get',
+              data: { id: me.idFromParent(e.target.getParent()), authenticity_token: Global.authenticity_token },
               evalScripts: false,
               onComplete: function(tree, elements, html, js) {
-                Global.Admin.reloadBody(elements[0]);
+                Global.Admin.addContent(elements[0]);
                 eval(js);
               }
-            }).get({ id: me.idFromParent(e.target.getParent()) });
+            }).send();
           menu.fade('out');
           return false;
         });

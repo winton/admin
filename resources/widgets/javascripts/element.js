@@ -18,12 +18,25 @@ Element.implement({
       link: 'chain'
     }).start('opacity', 0);
   },
+  focusFirst: function(select) {
+		var found = false;
+		this.getElements('input, textarea').each(function(el) {
+			if ((el.tagName == 'TEXTAREA' || el.type == 'text') && el.visible() && !found) {
+			  el.focus();
+				if (select) el.select();
+				found = true;
+			}
+		});
+	},
   hide: function() {
     this.setStyle('display', 'none');
   },
   show: function() {
     this.setStyle('display', '');
   },
+  visible: function() {
+		return (this.style.display != 'none');
+	},
   zebra: function(class_name, column_count, only) {
     var do_it = true;
     this.getChildren().each(function(item, index) {

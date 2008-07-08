@@ -10,12 +10,12 @@ module Admin
         self.class_eval do
           cattr_accessor :admin_sections
 					helper_method  :admin_sections
-					self.admin_sections = actions
+					self.admin_sections = actions.sort { |a, b| a.to_s <=> b.to_s }
 					
           actions.each do |action|
             define_method action do
               @title ||= [ 'Admin' ]
-              @title << action.to_s.capitalize.gsub('_', '')
+              @title << action.to_s.capitalize.gsub('_', ' ')
               render :layout => false
             end
           end

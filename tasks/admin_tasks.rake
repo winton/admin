@@ -24,7 +24,7 @@ namespace :admin do
   
   desc 'Updates widgets/admin'
   task :widgets do
-    admin_resource :views, 'app/views'
+    admin_resource :widgets, 'app/widgets'
   end
   
   desc 'Updates plugin resources from app'

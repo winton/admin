@@ -3,6 +3,7 @@
   %head
     %title= @title.join(' - ')
     - nav_widget = widget :admin, :nav
+    - widget :admin, :form,  :dependencies_only => true
     - widget :admin, :table, :dependencies_only => true
     - stylesheets 'admin/system/base'
     = stylesheets
@@ -24,9 +25,9 @@
             %b 3% of capacity.
             %br/
             You had
-            %b 10 sign ups, 1234 unique hits,
+            %b 0 sign ups, 0 unique hits,
             and
-            %b 10 account cancellations
+            %b 0 account cancellations
             in the past 24 hours.
     #content
       .content

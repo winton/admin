@@ -3591,7 +3591,7 @@ var Request = new Class({
 
 		var type = $type(options);
 		if (type == 'string' || type == 'element') options = {data: options};
-
+    
 		var old = this.options;
 		options = $extend({data: old.data, url: old.url, method: old.method}, options);
 		var data = options.data, url = options.url, method = options.method;
