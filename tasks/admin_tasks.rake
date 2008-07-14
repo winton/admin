@@ -24,7 +24,7 @@ namespace :admin do
   
   desc 'Updates widgets/admin'
   task :widgets do
-    admin_resource :widgets, 'app/widgets'
+    admin_resource :widgets, 'app/widgets/widgets'
   end
   
   desc 'Updates plugin resources from app'
@@ -33,7 +33,7 @@ namespace :admin do
     admin_resource :javascripts, 'public/javascripts',      true
     admin_resource :stylesheets, 'public/stylesheets/sass', true
     admin_resource :views,       'app/views',               true
-    admin_resource :widgets,     'app/widgets',             true
+    admin_resource :widgets,     'app/widgets/widgets',     true
   end
     
   def admin_resource(type, location, reverse=false)
