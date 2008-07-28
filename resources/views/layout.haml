@@ -1,14 +1,20 @@
+- require_widget :admin, :nav
+- require_widget :admin, :widgets, :dialog
+- require_widget :admin, :widgets, :indicator, :mouse
+- require_widget :admin, :widgets, :form
+- require_widget :admin, :widgets, :table
+
 !!! Strict
 %html
   %head
     %title= @title.join(' - ')
-    - require_widget :admin, :nav
-    - require_widget :admin, :form
-    - require_widget :admin, :table
     - javascripts 'admin/system/base', :layout => true
     - stylesheets 'admin/system/base', :layout => true
     = stylesheets
   %body
+    - render_widget :admin
+    - render_widget :admin, :widgets, :dialog
+    - render_widget :admin, :widgets, :indicator, :mouse
     #top
       .content= image_tag 'admin/system/title.png'
     #top2
@@ -34,7 +40,7 @@
       .content
         - tbl :row, :body, :px, 190, 780 do
           - tbl :cell, :body do
-            = render_widget :test, :admin, :nav
+            = render_widget :admin, :nav
           - tbl :cell, :body do
             = yield
     = javascripts

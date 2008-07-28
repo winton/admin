@@ -1,0 +1,44 @@
+.dialog
+  :font-size 12px
+  .close
+    :padding 4px 5px 2px
+    :margin-left -4px
+    :color #D78333
+    :font-weight bold
+  .content
+    :padding 0px 8px 5px
+    :min-height 11px
+    fieldset
+      :border 1px solid #ddd
+      legend
+        :font-weight bold
+        :font-size 14px
+        :padding-top 2px
+        :padding-left 21px
+        :background-image url('/images/<%= widget_image_path :admin, :widgets, :dialog, "title.png" %>')
+        :background-repeat no-repeat
+        :background-position 0px 0px
+        :line-height 16px
+      .field.clear
+        :clear both
+      .field
+        :float left
+        :padding 4px 0px 8px 10px
+        :width 220px
+        input
+          :width 200px
+        textarea
+          :width 440px
+          :height 150px
+        .name, .formError
+          :line-height 22px
+          :font-weight bold
+        .formError
+          :float right
+          :color red
+          :font-size 10px
+          :height 14px
+      .submit
+        :clear both
+        :float right
+        :padding-top 15px
