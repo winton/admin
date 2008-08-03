@@ -34,7 +34,7 @@ The `rake admin` task copies assets to
 * public/javascripts/admin/system
 * public/stylesheets/admin/system
 
-The `rake widgets:install` task copies widgets into **app/widgets/vendor**. See the [rails_widget README](https://github.com/winton/rails_widget) for more information.
+The `rake widgets:install` task copies widgets into **app/widgets/vendor**. See [rails_widget](https://github.com/winton/rails_widget) for more information.
 
 
 Routes
@@ -65,7 +65,7 @@ Controller
 
 Add views to **views/admin**. Admin will take care of the layout, navigation, and rendering of your actions.
 
-Your admin is located at `http://localhost/admin`.
+Your admin is located at **http://localhost/admin**.
 
 
 Views
