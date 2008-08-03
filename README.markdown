@@ -22,7 +22,7 @@ Install
 
 ### Create title png
 	
-Open `public/images/admin/system/title.psd`, edit it, and save it to `public/images/admin/title.png`.
+Open `public/images/admin/system/title.psd`, edit, and save to `public/images/admin/title.png`.
 
 
 About the Install
@@ -67,7 +67,7 @@ Controller
 
 Add views to `views/admin`. Admin will take care of the layout, navigation, and rendering of your actions.
 
-Your admin is located at *`/admin`*.
+Your admin is located at `localhost/admin`.
 
 
 Views
@@ -91,7 +91,7 @@ Most of our views render one or more paginated data tables:
 		:include_js => true
 	) %>
 
-See the [Table Widget README](https://github.com/winton/table_widget) for more information.
+See [table_widget](https://github.com/winton/table_widget) for more information.
 
 
 Resources
@@ -104,9 +104,9 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 #### Action
 
 	def index
-    @some_resources = SomeResource.paginate :page => params[:page], :per_page => params[:per_page], :order => params[:order]
-    respond_to :json
-  end
+	  @some_resources = SomeResource.paginate :page => params[:page], :per_page => params[:per_page], :order => params[:order]
+	  respond_to :json
+	end
 
 #### View (`index.json.erb`)
 
@@ -127,8 +127,8 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 #### Action
 
 	def new
-    @some_resource = SomeResource.new
-  end
+		@some_resource = SomeResource.new
+	end
 
 #### View (`new.haml`)
 
@@ -161,18 +161,18 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 #### Action
 
 	def edit
-    @some_resource = SomeResource.find params[:id]
-    render :action => 'new', :layout => false
-  end
+		@some_resource = SomeResource.find params[:id]
+		render :action => 'new', :layout => false
+	end
 
 ### Destroy
 
 #### Action
-	
+
 	def destroy
-    @some_resource = SomeResource.find params[:id]
-    @some_resource.destroy
-    render :nothing => true
-  end
+		@some_resource = SomeResource.find params[:id]
+		@some_resource.destroy
+		render :nothing => true
+	end
 
 ##### Copyright (c) 2008 Winton Welsh, released under the MIT license
