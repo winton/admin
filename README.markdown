@@ -53,16 +53,16 @@ Controller
 ----------
 
 	class AdminController < ApplicationController
-		acts_as_admin :articles, :comments, :users
+	  acts_as_admin :articles, :comments, :users
 		
-		def articles
-		end
+	  def articles
+	  end
 		
-		def comments
-		end
+	  def comments
+	  end
 		
-		def users
-		end
+	  def users
+	  end
 	end
 
 Add views to `views/admin`. Admin will take care of the layout, navigation, and rendering of your actions.
@@ -88,7 +88,7 @@ Most of our views render one or more paginated data tables:
 	    { :title => 'Edit',   :url => '/some_resource/:id/edit', :implementation => 'admin/widgets/form' },
 	    { :title => 'Delete', :url => '/some_resource/:id.json' }
 	  ],
-		:include_js => true
+	  :include_js => true
 	) %>
 
 See [table_widget](https://github.com/winton/table_widget) for more information.
@@ -127,7 +127,7 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 #### Action
 
 	def new
-		@some_resource = SomeResource.new
+	  @some_resource = SomeResource.new
 	end
 
 #### View (`new.haml`)
@@ -161,8 +161,8 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 #### Action
 
 	def edit
-		@some_resource = SomeResource.find params[:id]
-		render :action => 'new', :layout => false
+	  @some_resource = SomeResource.find params[:id]
+	  render :action => 'new', :layout => false
 	end
 
 ### Destroy
@@ -170,9 +170,9 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 #### Action
 
 	def destroy
-		@some_resource = SomeResource.find params[:id]
-		@some_resource.destroy
-		render :nothing => true
+	  @some_resource = SomeResource.find params[:id]
+	  @some_resource.destroy
+	  render :nothing => true
 	end
 
 ##### Copyright (c) 2008 Winton Welsh, released under the MIT license
