@@ -28,11 +28,11 @@ About the Install
 
 The `rake admin` task copies assets to
 
-* **app/views/admin/system**
-* **app/widgets/admin**
-* **public/images/admin/system**
-* **public/javascripts/admin/system**
-* **public/stylesheets/admin/system**
+* app/views/admin/system
+* app/widgets/admin
+* public/images/admin/system
+* public/javascripts/admin/system
+* public/stylesheets/admin/system
 
 The `rake widgets:install` task copies widgets into **app/widgets/vendor**. See the [rails_widget README](https://github.com/winton/rails_widget) for more information.
 
@@ -106,7 +106,7 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 	  respond_to :json
 	end
 
-#### View (**index.json.erb**)
+#### View (index.json.erb)
 
 	<%= {
 	  :order      => params[:order],
@@ -128,7 +128,7 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 	  @some_resource = SomeResource.new
 	end
 
-#### View (**new.haml**)
+#### View (new.haml)
 
 	%fieldset
 	  %legend
