@@ -13,8 +13,6 @@ Admin requires the following plugins:
 Install
 -------
 
-### Install Admin
-
 	git submodule add git@github.com:winton/admin.git vendor/plugins/admin
 	script/generate controller Admin
 	rake admin
@@ -22,7 +20,7 @@ Install
 
 ### Create title png
 	
-Open `public/images/admin/system/title.psd`, edit, and save to `public/images/admin/title.png`.
+Open public/images/admin/system/title.psd, edit, and save to public/images/admin/title.png.
 
 
 About the Install
@@ -30,13 +28,13 @@ About the Install
 
 The `rake admin` task copies assets to
 
-* `app/views/admin/system`
-* `app/widgets/admin`
-* `public/images/admin/system`
-* `public/javascripts/admin/system`
-* and `public/stylesheets/admin/system`
+* app/views/admin/system
+* app/widgets/admin
+* public/images/admin/system
+* public/javascripts/admin/system
+* public/stylesheets/admin/system
 
-The `rake widgets:install` task copies widgets into `app/widgets/vendor`. See the [rails_widget README](https://github.com/winton/rails_widget) for more information.
+The `rake widgets:install` task copies widgets into app/widgets/vendor. See the [rails_widget README](https://github.com/winton/rails_widget) for more information.
 
 
 Routes
@@ -46,7 +44,7 @@ Routes
 	  Admin::routes
 	end
 
-(Add `Admin::routes` to `config/routes.rb`.)
+(Add `Admin::routes` to config/routes.rb.)
 
 
 Controller
@@ -65,9 +63,9 @@ Controller
 	  end
 	end
 
-Add views to `views/admin`. Admin will take care of the layout, navigation, and rendering of your actions.
+Add views to views/admin. Admin will take care of the layout, navigation, and rendering of your actions.
 
-Your admin is located at `localhost/admin`.
+Your admin is located at `http://localhost/admin`.
 
 
 Views
@@ -108,7 +106,7 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 	  respond_to :json
 	end
 
-#### View (`index.json.erb`)
+#### View (index.json.erb)
 
 	<%= {
 	  :order      => params[:order],
@@ -130,7 +128,7 @@ The data table in the Admin view connects to a [resource](http://api.rubyonrails
 	  @some_resource = SomeResource.new
 	end
 
-#### View (`new.haml`)
+#### View (new.haml)
 
 	%fieldset
 	  %legend
