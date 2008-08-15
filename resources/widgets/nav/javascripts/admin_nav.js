@@ -12,7 +12,7 @@ var AdminNav = new Class({
       indicator.fade('in');
       var request = new Request.HTML({
         evalScripts: false,
-        onComplete: function(tree, elements, html, js) {
+        onSuccess: function(tree, elements, html, js) {
           Global.Admin.addContent(elements[0]);
           indicator.fade('out');
           eval(js);
