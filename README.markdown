@@ -3,7 +3,7 @@ Admin
 
 A quick way to implement a nice looking Admin in Rails.
 
-**This plugin and dependencies are very beta. Use at your own risk.*
+**This plugin and dependencies are very beta. Use at your own risk.**
 
 
 Requirements
