@@ -1,9 +1,6 @@
-- widget_base
-- require_widget :admin, :nav
-- require_widget :admin, :widgets, :dialog
-- require_widget :admin, :widgets, :indicator, :mouse
-- require_widget :admin, :widgets, :form
-- require_widget :admin, :widgets, :table
+- widget :admin
+- widget :admin, :nav
+- widget :admin, :widgets, :indicator, :mouse
 
 !!! Strict
 %html
@@ -12,10 +9,7 @@
     - javascripts 'admin/system/base', :layout => true
     - stylesheets 'admin/system/base', :layout => true
     = stylesheets
-  %body
-    - render_widget :admin
-    - render_widget :admin, :widgets, :dialog
-    - render_widget :admin, :widgets, :indicator, :mouse
+  %body    
     #top
       .content= image_tag 'admin/title.png'
     #top2
@@ -29,13 +23,12 @@
           - tbl :cell, :system_status do
             You’ll be happy to know that your
             %b 3 mongrels (2 production, 1 staging)
-            are running at
-            %b 3% of capacity.
+            are <b style="color:green">up</b>.
     #content
       .content
         - tbl :row, :body, :px, 190, 780 do
           - tbl :cell, :body do
-            = render_widget :admin, :nav
+            = widget :admin, :nav
           - tbl :cell, :body do
             = yield
     = javascripts
